@@ -1,0 +1,6 @@
+name: flask-app
+image: python:3.9
+command: python app.py
+workdir: /app
+sync:
+  - .:/app
