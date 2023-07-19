@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép các tệp tin dự án vào container
 COPY app.py .
 COPY utils.py .
+COPY config.py .
 COPY views views
 COPY templates templates
 COPY static static
