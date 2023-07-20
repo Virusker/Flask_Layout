@@ -1,12 +1,12 @@
 name: python-getting-started
 build:
-  hello-world:
+  flask_layout:
     image: virusker/flask_layout:latest
     context: .
 deploy:
   - kubectl apply -f k8s.yml
 dev:
-  hello-world:
+  flask_layout:
     command: bash
     environment:
       - FLASK_ENV=development
