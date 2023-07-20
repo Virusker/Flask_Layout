@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app-container
+        image: virusker/flask_layout:latest  # Tên của Docker image bạn đã xây dựng và lưu trữ trên Docker Hub hoặc 1 container registry khác
+        ports:
+        - containerPort: 5000  # Chuyển tiếp cổng 5000 trong container (ứng dụng Flask) đến cổng 5000 trên localhost
+        env:
+        - name: FLASK_ENV
+          value: "development"
+        - name: FLASK_DEBUG
+          value: "1"
