@@ -1,18 +1,16 @@
-name: python-getting-started
-build:
-  flask_layout:
+version: '1'
+
+services:
+  app:
+    build: .
     image: virusker/flask_layout:latest
-    context: .
-deploy:
-  - kubectl apply -f k8s.yml
-dev:
-  flask_layout:
-    command: bash
-    environment:
-      - FLASK_ENV=development
-    sync:
-      - .:/usr/src/app
-    reverse:
-      - 9000:9000
+    ports:
+      - 5000:5000  # Chuyển tiếp cổng 5000 trong container (ứng dụng Flask) đến cổng 5000 trên localhost
+    command: ["python", "app.py"]  # Chạy ứng dụng Flask bằng lệnh này
     volumes:
-      - /root/.cache/pip
+      - .:/usr/src/app  # Tùy chỉnh đường dẫn tới thư mục mã nguồn Flask trong repository
+
+    # Tùy chỉnh các thông số môi trường nếu cần thiết (ví dụ: cho Flask app)
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
