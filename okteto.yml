@@ -1,8 +1,18 @@
-name: flask-app
-command: ["python", "app.py"]
-image: virusker/flask_layout:latest
-forward:
-  - 5000:5000
-sync:
-  - .:/app
-
+name: python-getting-started
+build:
+  hello-world:
+    image: virusker/flask_layout:latest
+    context: .
+deploy:
+  - kubectl apply -f k8s.yml
+dev:
+  hello-world:
+    command: bash
+    environment:
+      - FLASK_ENV=development
+    sync:
+      - .:/usr/src/app
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/pip
