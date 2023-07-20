@@ -12,7 +12,7 @@ spec:
         app: hello-world
     spec:
       containers:
-      - image: virusker/flask_layout:latest
+      - image: okteto.dev/virusker/flask_layout:latest
         name: hello-world
 
 ---
