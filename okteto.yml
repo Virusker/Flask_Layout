@@ -6,7 +6,7 @@ services:
     #image: virusker/flask_layout:latest  # Tên của Docker image bạn đã xây dựng và lưu trữ trên Docker Hub hoặc 1 container registry khác
     ports:
       - 5000:5000  # Chuyển tiếp cổng 5000 trong container (ứng dụng Flask) đến cổng 5000 trên localhost
-    command: ["python", "app.py"]  # Chạy ứng dụng Flask bằng lệnh này
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]  # Chạy ứng dụng Flask bằng lệnh này   CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]   ["python", "app.py"]
     volumes:
       - .:/usr/src/app  # Tùy chỉnh đường dẫn tới thư mục mã nguồn Flask trong repository
 
